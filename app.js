@@ -26,12 +26,17 @@ const db = require("./db/models");
 const userRoute = require("./routes/userRoute");
 app.use(userRoute);
 
+
 const teamRoute = require("./routes/teamRoute");
 app.use(teamRoute);
 
 //
 
 app.use("/teams", teamRoute);
+
+const fieldRoute = require("./routes/fieldRoute");
+app.use("/fields", fieldRoute);
+
 
 // Error Handling Middleware
 app.use((err, req, res, next) => {
@@ -49,10 +54,10 @@ app.use((req, res, next) => {
 // Run API
 const run = async () => {
   try {
-    //await db.sequelize.sync({force: true});
+    //await db.sequelize.sync({ force: true });
     await db.sequelize.sync();
     console.log("Connection to the database successful!");
-    await app.listen(8000, () => {
+    await app.listen(8004, () => {
       console.log("The application is running on localhost:8000");
     });
   } catch (error) {
