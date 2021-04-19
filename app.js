@@ -26,6 +26,13 @@ const db = require("./db/models");
 const userRoute = require("./routes/userRoute");
 app.use(userRoute);
 
+const teamRoute = require("./routes/teamRoute");
+app.use(teamRoute);
+
+//
+
+app.use("/teams", teamRoute);
+
 // Error Handling Middleware
 app.use((err, req, res, next) => {
   res.status(err.status || 500);
