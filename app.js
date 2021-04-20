@@ -30,8 +30,6 @@ app.use(userRoute);
 const teamRoute = require("./routes/teamRoute");
 app.use(teamRoute);
 
-//
-
 app.use("/teams", teamRoute);
 
 const fieldRoute = require("./routes/fieldRoute");
