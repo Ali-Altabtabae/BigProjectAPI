@@ -53,4 +53,18 @@ exports.signin = (req, res) => {
   res.json({ token });
 };
 
-//
+// Update User
+exports.userUpdate = async (req, res) => {
+  const { userId } = req.params;
+  try {
+    const foundUser = await User.findByPk(userId);
+    if (foundUser) {
+      await foundUser.update(req.body);
+      res.status(204).end();
+    } else {
+      res.status(404).json({ message: "User not Found " });
+    }
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};

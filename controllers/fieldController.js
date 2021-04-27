@@ -14,10 +14,12 @@ exports.fieldList = async (req, res) => {
 
 exports.fieldCreate = async (req, res) => {
   try {
+    if (req.file) {
+      req.body.image = `http://${req.get("host")}/media/${req.file.filename}`;
+    }
     const newField = await Field.create(req.body);
     res.status(201).json(newField);
   } catch (error) {
-    console.log("abbas");
     res.status(500).json({ message: error.message });
   }
 };

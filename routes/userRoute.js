@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { userList, signup, signin } = require("../controllers/userController");
+const { userList, signup, signin, userUpdate } = require("../controllers/userController");
 const passport = require("passport");
 
 // Get Users
@@ -13,5 +13,8 @@ router.post(
     passport.authenticate("local", { session: false }),
     signin
   );
+
+// user Update
+router.put("/:userId", userUpdate);
 
 module.exports = router;

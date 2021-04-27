@@ -34,11 +34,14 @@ Object.keys(db).forEach(modelName => {
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
-
+// Team to User
 db.Team.hasMany(db.User, {
-
   foreignKey: "TeamId",
   allowNull: false,
+});
+
+db.User.belongsTo(db.Team, {
+  foreignKey: "TeamId",
 });
 
 module.exports = db;

@@ -22,10 +22,14 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-
     capacity: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: false,
+    },
+    image: DataTypes.STRING,
+
+    timeSlots: {
+      type: DataTypes.ARRAY(DataTypes.DATE),
     },
   });
   return Field;

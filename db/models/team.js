@@ -3,13 +3,7 @@ module.exports = (sequelize, DataTypes) => {
       teamName: {
         type: DataTypes.STRING,
       },
-  
-      players: {
-        type: DataTypes.STRING,
-      },
-  
     });
-  
     return Team;
   };
   
