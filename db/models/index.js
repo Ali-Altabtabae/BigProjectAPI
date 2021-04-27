@@ -57,7 +57,7 @@ db.User.hasMany(db.Field, {
   foreignKey: "book",
   allowNull: false,
 });
-db.Field.belongsTo(db.User, {
+db.Field.belongsToMany(db.User, {
   foreignKey: "book",
 });
 
