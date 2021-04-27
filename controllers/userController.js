@@ -7,7 +7,7 @@ const jwt = require("jsonwebtoken");
 exports.userList = async (req, res) => {
   try {
     const users = await User.findAll({
-      attributes: { exclude: ["createdAt", "updatedAt"] },
+      attributes: { exclude: ["createdAt", "updatedAt", "password"] },
     });
     res.json(users);
   } catch (error) {
@@ -22,7 +22,7 @@ exports.signup = async (req, res, next) => {
   if (req.body.username.includes(" ")) {
     return res.status(404).json("user cannot contain space");
   }
-  
+
   try {
     const hashedPassword = await bcrypt.hash(password, saltRounds);
     console.log("exports.signup -> hashedPassword", hashedPassword);
@@ -31,6 +31,7 @@ exports.signup = async (req, res, next) => {
     const payload = {
       id: newUser.id,
       username: newUser.username,
+      TeamId: newUser.TeamId,
       exp: Date.now() + JWT_EXPIRATION_MS,
     };
 
@@ -47,6 +48,7 @@ exports.signin = (req, res) => {
   const payload = {
     id: user.id,
     username: user.username,
+    TeamId: user.TeamId,
     exp: Date.now() + parseInt(JWT_EXPIRATION_MS),
   };
   const token = jwt.sign(JSON.stringify(payload), JWT_SECRET);
