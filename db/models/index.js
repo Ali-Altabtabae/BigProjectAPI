@@ -53,12 +53,14 @@ db.User.belongsTo(db.Team, {
   foreignKey: "TeamId",
 });
 
-db.User.hasMany(db.Field, {
-  foreignKey: "book",
-  allowNull: false,
+//many to many (user,field)
+db.User.belongsToMany(db.Field, {
+  through: "Bookings",
+  foreignKey: "userId",
 });
 db.Field.belongsToMany(db.User, {
-  foreignKey: "book",
+  through: "Bookings",
+  foreignKey: "fieldId",
 });
 
 module.exports = db;

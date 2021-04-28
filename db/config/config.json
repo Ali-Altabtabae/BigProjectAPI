@@ -1,11 +1,11 @@
 {
   "development": {
-    "username": "alialtabtabae",
-    "password": null,
+    "username": "postgres",
+    "password": "11223344",
     "database": "bigproject_db",
     "host": "127.0.0.1",
     "dialect": "postgres",
-    "logging":false
+    "logging": false
   },
   "test": {
     "username": "root",
